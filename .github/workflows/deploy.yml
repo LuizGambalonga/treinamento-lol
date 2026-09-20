@@ -1,0 +1,81 @@
+name: Publicar no GitHub Pages
+
+# Injeta o ID do Google Analytics no momento do deploy e publica a pagina.
+# O repositorio continua com o placeholder G-XXXXXXXXXX, entao o valor real
+# nunca precisa ser commitado.
+#
+# Configurar em:  Settings > Secrets and variables > Actions > Variables > New
+#   Nome:  GA_MEASUREMENT_ID
+#   Valor: G-XXXXXXXXXX  (o seu ID real)
+#
+# E em: Settings > Pages > Source = "GitHub Actions"
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita dois deploys simultaneos disputando o Pages
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Preparar arquivos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositorio
+        uses: actions/checkout@v4
+
+      - name: Injetar o ID do Google Analytics
+        env:
+          # Prioriza a Variable; cai para Secret se voce preferir guardar la
+          GA_ID: ${{ vars.GA_MEASUREMENT_ID || secrets.GA_MEASUREMENT_ID }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GA_ID}" ]; then
+            echo "::warning title=Analytics desativado::A variavel GA_MEASUREMENT_ID nao esta configurada. A pagina sera publicada sem rastreamento."
+            exit 0
+          fi
+
+          # Valida o formato antes de escrever no arquivo
+          if ! printf '%s' "${GA_ID}" | grep -Eq '^G-[A-Z0-9]{6,12}$'; then
+            echo "::error title=ID invalido::GA_MEASUREMENT_ID deve estar no formato G-XXXXXXXXXX."
+            exit 1
+          fi
+
+          sed -i "s/G-XXXXXXXXXX/${GA_ID}/g" index.html
+
+          # Confirma que a substituicao aconteceu de fato
+          if grep -q 'G-XXXXXXXXXX' index.html; then
+            echo "::error title=Falha na injecao::O placeholder ainda existe em index.html."
+            exit 1
+          fi
+          echo "Google Analytics configurado com sucesso."
+
+      - name: Configurar o Pages
+        uses: actions/configure-pages@v5
+
+      - name: Empacotar o site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    name: Publicar
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy no GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

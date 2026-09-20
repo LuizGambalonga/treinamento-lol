@@ -55,6 +55,9 @@ var GA_MEASUREMENT_ID = "G-XXXXXXXXXX"; /* <<<<<<<<<< TROQUE AQUI PELO SEU ID */
 Enquanto o ID for o placeholder, nada é enviado para o Google — os eventos aparecem apenas no
 console do navegador (`F12`), o que é útil para testar antes de publicar.
 
+> Publicando pelo GitHub Pages, você **não precisa** editar este arquivo: o workflow injeta o ID a
+> partir de uma variável do repositório. Veja [Publicar no GitHub Pages](#publicar-no-github-pages-com-o-id-vindo-de-variável).
+
 ### Onde ver de onde as pessoas estão acessando
 
 | Pergunta | Caminho no GA4 |
@@ -80,11 +83,40 @@ No GA4 eles aparecem em **Relatórios → Engajamento → Eventos** (leva até 2
 em **Tempo real** aparecem na hora). Para usar os parâmetros como filtro, registre-os em
 **Admin → Definições personalizadas → Dimensões personalizadas**.
 
-## Publicar no GitHub Pages
+## Publicar no GitHub Pages (com o ID vindo de variável)
 
-Com o repositório no ar, vá em **Settings → Pages**, selecione a branch `main` e a pasta `/root`.
-A página fica disponível em `https://<usuario>.github.io/<repositorio>/` — use essa URL ao criar
-o fluxo de dados no Google Analytics.
+O repositório mantém o placeholder `G-XXXXXXXXXX`. O workflow em
+`.github/workflows/deploy.yml` substitui esse valor **no momento do deploy**, lendo uma variável
+do repositório — assim o ID real nunca precisa ser commitado.
+
+> GitHub Pages serve apenas arquivos estáticos: não há servidor lendo variável de ambiente quando
+> alguém acessa. A injeção acontece no build, não em tempo de execução.
+
+**Configuração, uma vez só:**
+
+1. **Settings → Secrets and variables → Actions → aba `Variables` → New repository variable**
+   - Nome: `GA_MEASUREMENT_ID`
+   - Valor: o seu ID real (`G-XXXXXXXXXX`)
+2. **Settings → Pages → Source:** selecione **GitHub Actions** (não "Deploy from a branch")
+3. `git push` na `main` — o workflow roda sozinho
+
+A página sai em `https://<usuario>.github.io/<repositorio>/`. Use essa URL ao criar o fluxo de
+dados no Google Analytics.
+
+**Por que `Variables` e não `Secrets`:** o Measurement ID aparece no código-fonte de qualquer site
+que usa GA — ele é um identificador público, não uma credencial. `Variables` é o lugar semanticamente
+correto. Ainda assim o workflow aceita os dois: se você preferir guardar como Secret com o mesmo
+nome, ele usa o Secret como alternativa.
+
+Se a variável não existir, o deploy continua normalmente e a página é publicada **sem rastreamento**,
+com um aviso no log do Actions. Se o valor estiver em formato inválido, o build falha de propósito —
+melhor do que publicar analytics quebrado em silêncio.
+
+### E para rodar local?
+
+Nada muda: o `index.html` do repositório continua com o placeholder, os eventos aparecem no console
+e nada é enviado ao Google. Se quiser testar com o ID real localmente, edite o arquivo e **não
+comite essa linha**.
 
 ## Imagens
 

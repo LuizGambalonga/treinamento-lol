@@ -23,8 +23,12 @@
      -------------------------------------------------------------------------
      1) analytics.google.com -> Admin -> Criar propriedade
      2) Criar um "Fluxo de dados" WEB com a URL onde a pagina vai ficar hospedada
-     3) Copiar o "ID de medicao" (formato G-XXXXXXXXXX)
+     3) Copiar o "ID de medicao" (comeca com "G-")
      4) Colar abaixo em GA_MEASUREMENT_ID
+
+     Publicando pelo GitHub Pages? Nao precisa editar nada aqui: o workflow em
+     .github/workflows/deploy.yml injeta o ID a partir da variavel GA_MEASUREMENT_ID
+     do repositorio no momento do deploy.
 
      ONDE VER DE ONDE AS PESSOAS ESTAO ACESSANDO:
        Relatorios > Dados demograficos > Detalhes  ->  Pais / Regiao / Cidade
