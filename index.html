@@ -18,26 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/estilo.css">
 
-<!-- =========================================================================
-     GOOGLE ANALYTICS 4  ·  CONFIGURACAO EM UM LUGAR SO
-     -------------------------------------------------------------------------
-     1) analytics.google.com -> Admin -> Criar propriedade
-     2) Criar um "Fluxo de dados" WEB com a URL onde a pagina vai ficar hospedada
-     3) Copiar o "ID de medicao" (comeca com "G-")
-     4) Colar abaixo em GA_MEASUREMENT_ID
-
-     Publicando pelo GitHub Pages? Nao precisa editar nada aqui: o workflow em
-     .github/workflows/deploy.yml injeta o ID a partir da variavel GA_MEASUREMENT_ID
-     do repositorio no momento do deploy.
-
-     ONDE VER DE ONDE AS PESSOAS ESTAO ACESSANDO:
-       Relatorios > Dados demograficos > Detalhes  ->  Pais / Regiao / Cidade
-       Relatorios > Aquisicao > Aquisicao de trafego -> origem, midia, referenciador
-       Relatorios > Tecnologia -> dispositivo, navegador, sistema operacional
-       Relatorios > Tempo real -> quem esta na pagina agora e de onde
-     ========================================================================= -->
 <script>
-  var GA_MEASUREMENT_ID = "G-XXXXXXXXXX"; /* <<<<<<<<<< TROQUE AQUI PELO SEU ID */
+  var GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
@@ -63,7 +45,6 @@
     });
   })();
 
-  /* Helper usado por toda a pagina. Quando o GA esta desligado, loga no console. */
   function track(evento, params) {
     params = params || {};
     if (window.__GA_ATIVO) { gtag("event", evento, params); }
@@ -75,7 +56,6 @@
 <body>
 <div id="progressoLeitura"></div>
 
-<!-- ======================= NAVEGACAO ======================= -->
 <nav class="nav">
   <div class="nav-in">
     <a href="#topo" class="logo">
@@ -98,7 +78,6 @@
   </div>
 </nav>
 
-<!-- ======================= HERO ======================= -->
 <header class="hero" id="topo">
   <div class="hero-glow"></div>
   <div class="wrap">
@@ -125,7 +104,6 @@
 
 <main>
 
-<!-- ======================= MENTALIDADE ======================= -->
 <section id="mentalidade">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -187,7 +165,6 @@
   </div>
 </section>
 
-<!-- ======================= FUNDAMENTOS ======================= -->
 <section id="fundamentos">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -268,7 +245,6 @@
           <tr><td><strong>Dragão</strong></td><td class="mono">5:00</td><td class="mono">5:00</td><td>Quatro acumulam a Alma. O segundo e o terceiro são os que realmente decidem.</td></tr>
           <tr><td><strong>Larvas do Vazio</strong></td><td class="mono">6:00 e 14:00</td><td class="mono">—</td><td>Convertem-se em dano contra estruturas. Valem mais que dragão em comps de pressão.</td></tr>
           <tr><td><strong>Arauto do Vazio</strong></td><td class="mono">16:00</td><td class="mono">—</td><td>Tempo comprimido: derruba torre e abre visão para o caminho do Barão.</td></tr>
-          <tr><td><strong>Objetivo épico de meio</strong><br><small>Atakhan</small></td><td class="mono">20:00</td><td class="mono">—</td><td>Exige time agrupado e visão profunda. Trate com o mesmo cuidado do Barão.</td></tr>
           <tr><td><strong>Barão Na'shor</strong></td><td class="mono">25:00</td><td class="mono">6:00</td><td>O buff só vale o que as ondas empurradas conseguem converter em estrutura.</td></tr>
           <tr><td><strong>Dragão Ancião</strong></td><td class="mono">após a Alma</td><td class="mono">6:00</td><td>Execução em alvos com pouca vida. Normalmente decide a partida em uma luta.</td></tr>
         </tbody>
@@ -277,7 +253,6 @@
   </div>
 </section>
 
-<!-- ======================= MAPA INTERATIVO ======================= -->
 <section id="mapa">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -311,10 +286,8 @@
           <rect x="0" y="0" width="600" height="600" rx="14" fill="url(#gradMapa)"/>
           <rect x="0" y="0" width="600" height="600" rx="14" fill="none" stroke="rgba(200,170,110,.28)" stroke-width="2"/>
 
-          <!-- rio -->
           <line x1="26" y1="26" x2="574" y2="574" stroke="url(#gradRio)" stroke-width="52" stroke-linecap="round"/>
 
-          <!-- lanes -->
           <g fill="none" stroke="rgba(200,170,110,.30)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
             <path d="M 60 496 L 60 112 Q 60 62 112 60 L 496 60"/>
             <path d="M 104 496 L 496 104"/>
@@ -326,7 +299,6 @@
             <path d="M 104 540 L 488 540 Q 540 540 540 488 L 540 104"/>
           </g>
 
-          <!-- bases -->
           <g>
             <circle cx="58" cy="542" r="36" fill="rgba(5,150,170,.22)" stroke="#0596aa" stroke-width="2.5" filter="url(#brilho)"/>
             <text x="58" y="546" text-anchor="middle" font-size="10" font-weight="700" fill="#7fd6e6" font-family="Inter,sans-serif">AZUL</text>
@@ -334,14 +306,12 @@
             <text x="542" y="62" text-anchor="middle" font-size="10" font-weight="700" fill="#f08e9b" font-family="Inter,sans-serif">VERM.</text>
           </g>
 
-          <!-- rotulos de lane -->
           <g font-family="Inter,sans-serif" font-size="11" font-weight="800" fill="rgba(200,170,110,.5)" letter-spacing="2">
             <text x="88" y="196" transform="rotate(-90 88 196)">ROTA SUPERIOR</text>
             <text x="300" y="296" text-anchor="middle" transform="rotate(-45 300 296)">ROTA DO MEIO</text>
             <text x="360" y="566">ROTA INFERIOR</text>
           </g>
 
-          <!-- camps injetados pelo JS -->
           <g id="camadaCamps"></g>
         </svg>
 
@@ -364,7 +334,6 @@
   </div>
 </section>
 
-<!-- ======================= OBJETIVOS ======================= -->
 <section id="objetivos">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -423,7 +392,6 @@
   </div>
 </section>
 
-<!-- ======================= PATHING ======================= -->
 <section id="pathing">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -544,7 +512,6 @@
   </div>
 </section>
 
-<!-- ======================= GANKS E CONTRA-JUNGLE ======================= -->
 <section id="ganks">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -616,7 +583,6 @@
   </div>
 </section>
 
-<!-- ======================= CAMPEOES ======================= -->
 <section id="campeoes">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -651,7 +617,6 @@
   </div>
 </section>
 
-<!-- ======================= METRICAS E ROTINA ======================= -->
 <section id="metricas">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -708,7 +673,6 @@
   </div>
 </section>
 
-<!-- ======================= ROADMAP ======================= -->
 <section id="roadmap">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -729,7 +693,6 @@
   </div>
 </section>
 
-<!-- ======================= FAQ ======================= -->
 <section id="faq">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -742,7 +705,6 @@
 
 </main>
 
-<!-- ======================= RODAPE ======================= -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -778,7 +740,6 @@
   </div>
 </footer>
 
-<!-- ======================= MODAL DE CAMPEAO ======================= -->
 <div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="modal" id="modal"></div>
 </div>

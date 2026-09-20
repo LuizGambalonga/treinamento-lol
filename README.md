@@ -10,7 +10,7 @@ completo de treinamento para a rota da selva em League of Legends.
 | **Mentalidade** | Os quatro princípios que separam elo médio de elo alto |
 | **Fundamentos** | Kiting de camp, gestão de vida, uso de Smite + tabela de tempos |
 | **Mapa interativo** | SVG clicável com 16 pontos — camps, caranguejos e covis de objetivo |
-| **Linha do tempo** | 11 marcos da partida, de 0:00 a 25:00, com o checklist de cada janela |
+| **Linha do tempo** | 10 marcos da partida, de 0:00 a 25:00, com o checklist de cada janela |
 | **Calculadora** | Renascimento, janela de setup, hora de colocar visão e de avisar o time |
 | **Pathing** | Full clear, rota curta, invade nível 1 e adaptação no meio do clear |
 | **Ganks** | Leitura de onda, ângulo de entrada e checklist de contra-jungle |

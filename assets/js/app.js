@@ -1,7 +1,4 @@
-/* =========================================================================
-   JUNGLE CHALLENGER · Interatividade
-   Depende de dados.js (CAMPS, TIMELINE, CAMPEOES, ROADMAP, KPIS, FAQ, RUNAS)
-   ========================================================================= */
+
 (function () {
   "use strict";
 
@@ -9,9 +6,6 @@
   var $$ = function (s, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(s)); };
   var SVG_NS = "http://www.w3.org/2000/svg";
 
-  /* ---------------------------------------------------------------------
-     1. Data Dragon: descobre a versao mais recente do jogo
-     --------------------------------------------------------------------- */
   var ddVersao = DDRAGON_FALLBACK;
 
   function urlCampeao(chave) {
@@ -36,7 +30,6 @@
       });
   }
 
-  /* Substitui a imagem por um bloco de texto quando o arquivo nao existe */
   function comFallback(img, texto) {
     img.addEventListener("error", function () {
       var alvo = img.parentNode;
@@ -50,9 +43,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     2. Mapa interativo
-     --------------------------------------------------------------------- */
   function montarMapa() {
     var camada = $("#camadaCamps");
     if (!camada) { return; }
@@ -114,9 +104,6 @@
     track("camp_clicado", { camp: c.nome, lado: c.lado });
   }
 
-  /* ---------------------------------------------------------------------
-     3. Linha do tempo da partida
-     --------------------------------------------------------------------- */
   function montarTimeline() {
     var cont = $("#tlItens");
     if (!cont) { return; }
@@ -155,9 +142,6 @@
       '</ul>';
   }
 
-  /* ---------------------------------------------------------------------
-     4. Calculadora de renascimento
-     --------------------------------------------------------------------- */
   function fmt(seg) {
     if (seg < 0) { seg = 0; }
     var m = Math.floor(seg / 60), s = seg % 60;
@@ -184,9 +168,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     5. Abas de pathing
-     --------------------------------------------------------------------- */
   function montarAbas() {
     $$(".aba").forEach(function (b) {
       b.addEventListener("click", function () {
@@ -200,9 +181,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     6. Pool de campeoes + modal de build
-     --------------------------------------------------------------------- */
   function montarCampeoes() {
     var grid = $("#champGrid");
     if (!grid) { return; }
@@ -316,9 +294,6 @@
     document.body.style.overflow = "";
   }
 
-  /* ---------------------------------------------------------------------
-     7. KPIs
-     --------------------------------------------------------------------- */
   function montarKpis() {
     var g = $("#gridKpi");
     if (!g) { return; }
@@ -328,9 +303,6 @@
     }).join("");
   }
 
-  /* ---------------------------------------------------------------------
-     8. Roadmap com progresso salvo no navegador
-     --------------------------------------------------------------------- */
   var CHAVE = "jungle-challenger-progresso";
 
   function lerProgresso() {
@@ -338,7 +310,7 @@
     catch (e) { return {}; }
   }
   function salvarProgresso(obj) {
-    try { localStorage.setItem(CHAVE, JSON.stringify(obj)); } catch (e) { /* modo privado */ }
+    try { localStorage.setItem(CHAVE, JSON.stringify(obj)); } catch (e) {}
   }
 
   function montarRoadmap() {
@@ -425,9 +397,6 @@
     $("#pctProgresso").textContent = pct + "%";
   }
 
-  /* ---------------------------------------------------------------------
-     9. FAQ
-     --------------------------------------------------------------------- */
   function montarFaq() {
     var cont = $("#listaFaq");
     if (!cont) { return; }
@@ -451,9 +420,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     10. Navegacao, progresso de leitura, revelacao ao rolar
-     --------------------------------------------------------------------- */
   function montarNavegacao() {
     var btn   = $("#menuBtn");
     var links = $("#navLinks");
@@ -508,7 +474,6 @@
     $("#progressoLeitura").style.width = pct + "%";
     $("#voltarTopo").classList.toggle("on", h.scrollTop > 700);
 
-    /* item ativo no menu */
     var atual = "";
     $$("section[id], header[id]").forEach(function (s) {
       if (s.getBoundingClientRect().top <= 140) { atual = s.id; }
@@ -517,7 +482,6 @@
       a.classList.toggle("ativo", a.getAttribute("href") === "#" + atual);
     });
 
-    /* evento: profundidade de rolagem */
     profundidades.forEach(function (p) {
       if (pct >= p && !profundidadesVistas[p]) {
         profundidadesVistas[p] = true;
@@ -546,7 +510,6 @@
       obs.observe(e);
     });
 
-    /* evento: secao efetivamente vista */
     var obsSec = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (en) {
         if (en.isIntersecting && !secoesVistas[en.target.id]) {
@@ -558,9 +521,6 @@
     $$("section[id]").forEach(function (s) { obsSec.observe(s); });
   }
 
-  /* ---------------------------------------------------------------------
-     11. Tempo de permanencia na pagina
-     --------------------------------------------------------------------- */
   function montarTempoPagina() {
     var inicio = Date.now();
     var enviado = false;
@@ -575,9 +535,6 @@
     window.addEventListener("pagehide", enviar);
   }
 
-  /* ---------------------------------------------------------------------
-     12. Inicializacao
-     --------------------------------------------------------------------- */
   function iniciar() {
     montarMapa();
     montarTimeline();
@@ -599,7 +556,6 @@
       calcular();
     }
 
-    /* modal: fechar por fundo e por tecla */
     var bg = $("#modalBg");
     if (bg) {
       bg.addEventListener("click", function (e) { if (e.target === bg) { fecharModal(); } });
@@ -608,10 +564,8 @@
       if (e.key === "Escape") { fecharModal(); }
     });
 
-    /* campeoes dependem da versao do Data Dragon */
     carregarVersao().then(montarCampeoes);
 
-    /* mantem as alturas corretas quando a janela muda de tamanho */
     window.addEventListener("resize", function () {
       $$(".fase.aberta .fase-corpo").forEach(function (c) { c.style.maxHeight = c.scrollHeight + "px"; });
       $$(".faq.aberta .faq-a").forEach(function (c) { c.style.maxHeight = c.scrollHeight + "px"; });

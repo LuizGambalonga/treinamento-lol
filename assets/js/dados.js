@@ -1,14 +1,8 @@
-/* =========================================================================
-   JUNGLE CHALLENGER · Base de dados do treinamento
-   Tudo que a pagina renderiza dinamicamente vive aqui.
-   Icones de campeoes/itens/runas vem do Data Dragon (CDN oficial da Riot).
-   ========================================================================= */
 
-/* Versao usada como fallback caso a consulta ao versions.json falhe */
+
 var DDRAGON_FALLBACK = "14.24.1";
 var DD_PERKS = "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/";
 
-/* ---------------------------------------------------------------- RUNAS */
 var RUNAS = {
   conquistador: { nome: "Conquistador",      img: DD_PERKS + "Precision/Conqueror/Conqueror.png" },
   tempoLetal:   { nome: "Tempo Letal",       img: DD_PERKS + "Precision/LethalTempo/LethalTempoTemp.png" },
@@ -24,11 +18,8 @@ var RUNAS = {
   primeiroAto:  { nome: "Primeiro Ataque",   img: DD_PERKS + "Inspiration/FirstStrike/FirstStrike.png" }
 };
 
-/* ------------------------------------------------------- CAMPS DO MAPA
-   x / y sao coordenadas no viewBox 0 0 600 600 do SVG do mapa.
-   Lado azul = canto inferior esquerdo. Lado vermelho = canto superior direito.  */
 var CAMPS = [
-  /* --- lado AZUL --- */
+
   { id:"gromp-b",   nome:"Gromp",              lado:"Azul",     cor:"#3ddc84", x:118, y:252,
     respawn:"2:15", spawn:"1:30", xp:"~180 XP", ouro:"~86 g",
     dica:"Buff de Gromp da dano em area nos monstros. Muitos clears comecam ou terminam aqui para aproveitar o buff no proximo camp." },
@@ -48,7 +39,6 @@ var CAMPS = [
     respawn:"2:15", spawn:"1:30", xp:"~330 XP", ouro:"~132 g",
     dica:"Maior XP e ouro do jungle, mas o clear mais lento. Pular Krugs para ganhar tempo e uma decisao legitima em nivel alto." },
 
-  /* --- lado VERMELHO --- */
   { id:"gromp-r",   nome:"Gromp",              lado:"Vermelho", cor:"#3ddc84", x:482, y:348,
     respawn:"2:15", spawn:"1:30", xp:"~180 XP", ouro:"~86 g",
     dica:"Do lado inimigo, so invada com visao do jungler adversario e rota de fuga pelo rio." },
@@ -68,7 +58,6 @@ var CAMPS = [
     respawn:"2:15", spawn:"1:30", xp:"~330 XP", ouro:"~132 g",
     dica:"Roubo de alto valor, porem o mais demorado. So compensa com o jungler inimigo morto ou do outro lado do mapa." },
 
-  /* --- NEUTROS / OBJETIVOS --- */
   { id:"scuttle-t", nome:"Caranguejo (topo)",  lado:"Rio",      cor:"#0ac8b9", x:150, y:140,
     respawn:"2:30", spawn:"3:30", xp:"~110 XP", ouro:"~55 g",
     dica:"Da visao movel e um acelerador no rio. Primeiro caranguejo e o primeiro teste de prioridade do jogo: so dispute com lanes com prio." },
@@ -83,7 +72,6 @@ var CAMPS = [
     dica:"4 dragoes = Alma. O 2o e o 3o dragao decidem a Alma na pratica, e sao os que merecem o setup mais caro em tempo e visao." }
 ];
 
-/* ----------------------------------------------- LINHA DO TEMPO DA PARTIDA */
 var TIMELINE = [
   { t:"0:00", rot:"Spawn / Leash", titulo:"Preparacao antes do minuto 1",
     txt:"Defina o lado do clear AINDA no carregamento. Pergunte no chat quem consegue dar leash e avise a rota de inicio. Se a comp inimiga tem jungler de invade (Xin Zhao, Rek'Sai, Elise), comece pelo camp mais protegido e peca visao no rio.",
@@ -109,15 +97,11 @@ var TIMELINE = [
   { t:"16:00",rot:"Arauto",       titulo:"Arauto do Vazio",
     txt:"O Arauto e tempo comprimido: derruba torre e abre o mapa para visao. Use-o na lane onde voce quer JOGAR os proximos 5 minutos, nao na lane que esta mais facil.",
     acoes:["Soltar o Arauto na lane que abre caminho para o Barao","Nunca soltar sem a onda empurrada junto"] },
-  { t:"20:00",rot:"Atakhan",      titulo:"Janela de objetivo epico",
-    txt:"Objetivo epico de meio de jogo que exige o time agrupado e visao profunda. Trate como Barao: sem 4 pessoas vivas e visao montada, nao inicie.",
-    acoes:["Visao profunda montada 60s antes","Checar recarga de Flash e ultimates dos 5 inimigos"] },
   { t:"25:00",rot:"Barao",        titulo:"Barao Na'shor e o fim de jogo",
     txt:"Barao nao e o objetivo: o objetivo e o que o buff do Barao compra (inibidor, fim de jogo). Sem ondas empurradas, o buff vira apenas 3 minutos de nada.",
     acoes:["Empurrar as 3 ondas ANTES de iniciar","Contar as ultimates inimigas e a recarga de Smite","Ter saida planejada se o time inimigo aparecer"] }
 ];
 
-/* -------------------------------------------------------------- CAMPEOES */
 var CAMPEOES = [
   {
     k:"Viego", nome:"Viego", slug:"viego", papel:"Skirmisher / Carry", cat:["skirmisher","carry"],
@@ -301,7 +285,6 @@ var CAMPEOES = [
   }
 ];
 
-/* -------------------------------------------------------------- ROADMAP */
 var ROADMAP = [
   {
     fase:1, semanas:"Semanas 1 a 3", titulo:"Fundamentos e Consistencia Mecanica",
@@ -361,7 +344,6 @@ var ROADMAP = [
   }
 ];
 
-/* ------------------------------------------------------------------ KPIs */
 var KPIS = [
   { alvo:"70+",   nome:"CS de jungle aos 10min", txt:"Somando camps e minions. Abaixo de 60 indica tempo morto ou rota mal planejada." },
   { alvo:"≥70%",  nome:"Participacao em objetivos", txt:"Percentual de dragoes, larvas, arautos e baroes em que voce esteve presente." },
@@ -373,7 +355,6 @@ var KPIS = [
   { alvo:"≥50%",  nome:"Diferenca de ouro vs jungler inimigo @10", txt:"Mede diretamente a qualidade do seu clear e do seu contra-jungle." }
 ];
 
-/* ------------------------------------------------------------------- FAQ */
 var FAQ = [
   { q:"Devo fazer full clear ou 3 camps e gankar?",
     a:"Depende de tres coisas: o campeao, o estado das lanes e o proximo objetivo. Campeoes de escala (Karthus, Kindred, Lillia) querem full clear. Campeoes de pico inicial (Lee Sin, Elise, Xin Zhao) querem 3 camps e pressao imediata. A regra que vale para todos: termine o clear do lado do proximo objetivo relevante." },
