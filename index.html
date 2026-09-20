@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jungle Challenger · Roadmap Completo de Treinamento (League of Legends)</title>
+<meta name="description" content="Roadmap interativo de treinamento para junglers de League of Legends: mapa clicavel, timers de objetivos, pathing, rastreamento, contra-jungle, pool de campeoes com builds de referencia e plano de 12 semanas.">
+<meta name="author" content="Jungle Challenger Academy">
+<meta name="theme-color" content="#0a1428">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jungle Challenger · Roadmap Completo de Treinamento">
+<meta property="og:description" content="Do clear otimizado ao shotcalling de Barao: o caminho completo para jogar jungle em alto nivel.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4 92,27 92,73 50,96 8,73 8,27' fill='%230a1428' stroke='%23c8aa6e' stroke-width='6'/%3E%3Cpath d='M50 22 L62 50 L50 78 L38 50 Z' fill='%230ac8b9'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://ddragon.leagueoflegends.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/estilo.css">
+
+<!-- =========================================================================
+     GOOGLE ANALYTICS 4  ·  CONFIGURACAO EM UM LUGAR SO
+     -------------------------------------------------------------------------
+     1) analytics.google.com -> Admin -> Criar propriedade
+     2) Criar um "Fluxo de dados" WEB com a URL onde a pagina vai ficar hospedada
+     3) Copiar o "ID de medicao" (formato G-XXXXXXXXXX)
+     4) Colar abaixo em GA_MEASUREMENT_ID
+
+     ONDE VER DE ONDE AS PESSOAS ESTAO ACESSANDO:
+       Relatorios > Dados demograficos > Detalhes  ->  Pais / Regiao / Cidade
+       Relatorios > Aquisicao > Aquisicao de trafego -> origem, midia, referenciador
+       Relatorios > Tecnologia -> dispositivo, navegador, sistema operacional
+       Relatorios > Tempo real -> quem esta na pagina agora e de onde
+     ========================================================================= -->
+<script>
+  var GA_MEASUREMENT_ID = "G-XXXXXXXXXX"; /* <<<<<<<<<< TROQUE AQUI PELO SEU ID */
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+
+  (function () {
+    var ativo = GA_MEASUREMENT_ID && GA_MEASUREMENT_ID.indexOf("XXXX") === -1;
+    window.__GA_ATIVO = ativo;
+    if (!ativo) {
+      console.warn("[Analytics] GA_MEASUREMENT_ID ainda e um placeholder — os eventos serao apenas exibidos no console. Edite index.html para ativar.");
+      return;
+    }
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
+    document.head.appendChild(s);
+    gtag("js", new Date());
+    gtag("config", GA_MEASUREMENT_ID, {
+      send_page_view: true,
+      page_title: "Jungle Challenger Roadmap",
+      referenciador: document.referrer || "acesso-direto",
+      idioma_navegador: navigator.language,
+      resolucao_tela: window.screen.width + "x" + window.screen.height
+    });
+  })();
+
+  /* Helper usado por toda a pagina. Quando o GA esta desligado, loga no console. */
+  function track(evento, params) {
+    params = params || {};
+    if (window.__GA_ATIVO) { gtag("event", evento, params); }
+    else { console.log("%c[Analytics simulado] " + evento, "color:#0ac8b9", params); }
+  }
+</script>
+</head>
+
+<body>
+<div id="progressoLeitura"></div>
+
+<!-- ======================= NAVEGACAO ======================= -->
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#topo" class="logo">
+      <span class="mark">◆</span>
+      <span>JUNGLE CHALLENGER<small>Roadmap de Treinamento</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#mentalidade">Mentalidade</a>
+      <a href="#fundamentos">Fundamentos</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#pathing">Pathing</a>
+      <a href="#ganks">Ganks</a>
+      <a href="#campeoes">Campeões</a>
+      <a href="#metricas">Métricas</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero" id="topo">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> League of Legends · Rota da Selva</span>
+    <h1>O caminho completo do<br><span class="grad">Jungler Challenger</span></h1>
+    <p class="hero-sub">
+      Um programa de estudo em quatro fases que sai do clear otimizado e chega ao shotcalling de Barão.
+      Mapa interativo, tempos de renascimento, rotas de <em>pathing</em>, rastreamento do jungler inimigo,
+      pool de campeões com builds de referência e um checklist de 12 semanas que salva o seu progresso.
+    </p>
+    <div class="cta-row">
+      <a href="#roadmap" class="btn btn-primary" data-cta="roadmap">Começar o roadmap →</a>
+      <a href="#mapa" class="btn btn-ghost" data-cta="mapa">Explorar o mapa</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n">12<span> semanas</span></div><div class="l">Programa estruturado</div></div>
+      <div class="stat"><div class="n">32<span> tarefas</span></div><div class="l">Checklist com progresso salvo</div></div>
+      <div class="stat"><div class="n">20<span> campeões</span></div><div class="l">Builds e runas de referência</div></div>
+      <div class="stat"><div class="n">16<span> pontos</span></div><div class="l">Mapa clicável de camps</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= MENTALIDADE ======================= -->
+<section id="mentalidade">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01 — Fundação</span>
+      <h2>A mentalidade que separa o Ouro do Challenger</h2>
+      <p>Jungler não é a função que "farma e ganka". É a única função que controla <strong>tempo</strong> e
+      <strong>espaço</strong> no mapa inteiro. Todo o resto deste material é consequência destes quatro princípios.</p>
+    </div>
+
+    <div class="grid g2">
+      <article class="card reveal">
+        <div class="ico">⏱</div>
+        <h3>Você joga contra o relógio, não contra o inimigo</h3>
+        <p>Cada segundo parado é ouro e experiência que nunca voltam. O conceito mais importante da rota
+        chama-se <strong>tempo morto</strong>: a soma dos segundos em que você não está farmando, não está
+        indo em direção a um objetivo e não está ganhando nada.</p>
+        <p>Em nível Challenger esse número fica próximo de zero. Não porque o jogador é mais rápido, mas
+        porque cada movimento tem um destino definido antes de começar.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico">🧭</div>
+        <h3>Três perguntas em looping</h3>
+        <p>Do minuto 1 ao fim da partida, sua cabeça responde continuamente:</p>
+        <ul>
+          <li><strong>Onde está o jungler inimigo?</strong> — se você não sabe, descobrir vira sua próxima tarefa.</li>
+          <li><strong>Qual é o próximo objetivo e quando ele nasce?</strong> — e de que lado do mapa você precisa estar.</li>
+          <li><strong>Qual lane pode me dar prioridade?</strong> — prioridade é o que transforma intenção em objetivo.</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico">♟</div>
+        <h3>Gank não é o objetivo — é o meio</h3>
+        <p>Um gank que termina com você voltando para o próprio jungle foi tempo jogado fora. Todo gank
+        bem-sucedido precisa ser convertido em algo permanente: <strong>placa de torre</strong>,
+        <strong>camp roubado</strong>, <strong>objetivo</strong> ou <strong>visão profunda</strong>.</p>
+        <p>A pergunta correta nunca é "posso matar esse inimigo?". É "o que essa morte me compra nos
+        próximos 40 segundos?".</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico">🔁</div>
+        <h3>Consistência vence repertório</h3>
+        <p>Jogadores presos em elo médio costumam saber muita coisa e executar pouca. Jogadores de elo alto
+        sabem menos variações e executam todas elas sem falhar.</p>
+        <p>Por isso o pool deste roadmap é fechado em <strong>três campeões</strong>. Repetição é o que
+        transforma decisão consciente em reflexo — e reflexo é o que sobra quando a partida fica tensa.</p>
+      </article>
+    </div>
+
+    <div class="callout gold reveal">
+      <span class="ci">⚠️</span>
+      <p><strong>Sobre os números desta página:</strong> tempos de renascimento e de nascimento de objetivos
+      épicos são ajustados pela Riot a cada temporada e, às vezes, no meio dela. Os valores aqui servem como
+      referência de estudo e para você construir o hábito de pensar em janelas de tempo. Confirme sempre as
+      notas de atualização do patch atual antes de fechar a sua rotina.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FUNDAMENTOS ======================= -->
+<section id="fundamentos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02 — Fundamentos</span>
+      <h2>Clear, kiting e economia da selva</h2>
+      <p>Antes de qualquer conceito de macro, o clear precisa estar limpo. É o alicerce: um clear 20 segundos
+      mais lento que o do adversário significa chegar atrasado em todo objetivo da partida.</p>
+    </div>
+
+    <div class="grid g3">
+      <article class="card reveal">
+        <div class="ico">🪓</div>
+        <h3>Kiting de camp</h3>
+        <p>Nunca termine um camp parado. Ataque, ande em direção ao próximo camp, ataque de novo. Você perde
+        zero dano por segundo e ganha de 8 a 15 segundos por clear completo.</p>
+        <p>Em 30 minutos de partida, isso é aproximadamente <strong>um camp inteiro de vantagem</strong>.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico">⚡</div>
+        <h3>Smite não é só para objetivo</h3>
+        <p>Até os 5 minutos, o Smite tem duas funções: acelerar o clear e devolver vida. Usá-lo no camp certo
+        significa chegar no rio com vida para disputar o caranguejo.</p>
+        <p>A partir do primeiro dragão, a regra muda: <strong>Smite pertence ao objetivo</strong>, salvo quando
+        o roubo garante um duelo vencido.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico">🩸</div>
+        <h3>Gestão de vida</h3>
+        <p>Vida é um recurso de macro, não de sobrevivência. Terminar o clear com 30% de vida significa voltar
+        à base e perder a janela do caranguejo ou do primeiro objetivo.</p>
+        <p>Planeje a ordem dos camps para terminar com vida suficiente para <strong>uma luta a mais</strong>.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico">📈</div>
+        <h3>Nível &gt; ouro (antes dos 10min)</h3>
+        <p>No início da partida, experiência vale mais que ouro. Nível 3 antes do adversário vence o
+        caranguejo; nível 6 antes dele abre uma janela inteira de mapa.</p>
+        <p>Por isso camps de alta experiência (buffs e Krugs) e minions de lanes empurradas têm prioridade.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico">👁</div>
+        <h3>Visão é o item mais barato</h3>
+        <p>Sentinela de controle em <strong>toda</strong> volta à base. Sentinela de rastreamento colocada
+        <em>antes</em> do objetivo nascer, nunca depois — visão colocada em cima da hora não informa nada.</p>
+        <p>A partir dos 9 minutos, o vasculhador entra na rotação: negar visão vale tanto quanto criá-la.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico">🎯</div>
+        <h3>Comece o clear pelo lado certo</h3>
+        <p>A decisão é tomada ainda na tela de carregamento. Full clear? Comece pelo lado <strong>oposto</strong>
+        ao primeiro objetivo, para terminar em cima dele.</p>
+        <p>Rota curta de 3 camps? Comece pelo lado onde a sua lane tem mais chance de converter o gank.</p>
+      </article>
+    </div>
+
+    <h3 class="reveal" style="margin-top:52px">Tabela de referência — camps e objetivos</h3>
+    <div class="tabela-scroll reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Camp / Objetivo</th>
+            <th class="mono">Nasce</th>
+            <th class="mono">Renasce</th>
+            <th>Por que importa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Camps pequenos</strong><br><small>Gromp, Lobos, Aves</small></td><td class="mono">1:30</td><td class="mono">2:15</td><td>Base do clear. O ciclo de 2:15 define quando você pode repetir a rota.</td></tr>
+          <tr><td><strong>Sentinela Azul</strong></td><td class="mono">1:30</td><td class="mono">5:00</td><td>Mana e redução de recarga por 2:00. Ceder o segundo azul ao mid é jogada comum.</td></tr>
+          <tr><td><strong>Sentinela Vermelha</strong></td><td class="mono">1:30</td><td class="mono">5:00</td><td>Dano contínuo e lentidão. Transforma qualquer campeão de ataque básico em ameaça de gank.</td></tr>
+          <tr><td><strong>Krugs</strong></td><td class="mono">1:30</td><td class="mono">2:15</td><td>Maior experiência e ouro do jungle, porém o clear mais lento do mapa.</td></tr>
+          <tr><td><strong>Caranguejo do Vazio</strong></td><td class="mono">3:30</td><td class="mono">2:30</td><td>Visão móvel no rio. O primeiro é o teste real de quem controla a prioridade.</td></tr>
+          <tr><td><strong>Dragão</strong></td><td class="mono">5:00</td><td class="mono">5:00</td><td>Quatro acumulam a Alma. O segundo e o terceiro são os que realmente decidem.</td></tr>
+          <tr><td><strong>Larvas do Vazio</strong></td><td class="mono">6:00 e 14:00</td><td class="mono">—</td><td>Convertem-se em dano contra estruturas. Valem mais que dragão em comps de pressão.</td></tr>
+          <tr><td><strong>Arauto do Vazio</strong></td><td class="mono">16:00</td><td class="mono">—</td><td>Tempo comprimido: derruba torre e abre visão para o caminho do Barão.</td></tr>
+          <tr><td><strong>Objetivo épico de meio</strong><br><small>Atakhan</small></td><td class="mono">20:00</td><td class="mono">—</td><td>Exige time agrupado e visão profunda. Trate com o mesmo cuidado do Barão.</td></tr>
+          <tr><td><strong>Barão Na'shor</strong></td><td class="mono">25:00</td><td class="mono">6:00</td><td>O buff só vale o que as ondas empurradas conseguem converter em estrutura.</td></tr>
+          <tr><td><strong>Dragão Ancião</strong></td><td class="mono">após a Alma</td><td class="mono">6:00</td><td>Execução em alvos com pouca vida. Normalmente decide a partida em uma luta.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= MAPA INTERATIVO ======================= -->
+<section id="mapa">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03 — Mapa interativo</span>
+      <h2>Summoner's Rift, camp por camp</h2>
+      <p>Clique em qualquer ponto do mapa para ver tempo de renascimento, experiência, ouro e a nota tática
+      daquele camp. Os pontos em <span style="color:var(--teal)">ciano</span> são neutros do rio e os
+      <span style="color:var(--violet)">covis de objetivo</span> concentram as decisões mais caras da partida.</p>
+    </div>
+
+    <div class="mapa-layout">
+      <div class="mapa-box reveal">
+        <svg viewBox="0 0 600 600" role="img" aria-label="Mapa interativo de Summoner's Rift com os camps da selva">
+          <defs>
+            <linearGradient id="gradMapa" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0d2a2a"/>
+              <stop offset="50%" stop-color="#081826"/>
+              <stop offset="100%" stop-color="#0a1c2e"/>
+            </linearGradient>
+            <linearGradient id="gradRio" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0ac8b9" stop-opacity=".30"/>
+              <stop offset="50%" stop-color="#0596aa" stop-opacity=".16"/>
+              <stop offset="100%" stop-color="#0ac8b9" stop-opacity=".30"/>
+            </linearGradient>
+            <filter id="brilho" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <rect x="0" y="0" width="600" height="600" rx="14" fill="url(#gradMapa)"/>
+          <rect x="0" y="0" width="600" height="600" rx="14" fill="none" stroke="rgba(200,170,110,.28)" stroke-width="2"/>
+
+          <!-- rio -->
+          <line x1="26" y1="26" x2="574" y2="574" stroke="url(#gradRio)" stroke-width="52" stroke-linecap="round"/>
+
+          <!-- lanes -->
+          <g fill="none" stroke="rgba(200,170,110,.30)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M 60 496 L 60 112 Q 60 62 112 60 L 496 60"/>
+            <path d="M 104 496 L 496 104"/>
+            <path d="M 104 540 L 488 540 Q 540 540 540 488 L 540 104"/>
+          </g>
+          <g fill="none" stroke="rgba(200,170,110,.14)" stroke-width="2" stroke-dasharray="5 7">
+            <path d="M 60 496 L 60 112 Q 60 62 112 60 L 496 60"/>
+            <path d="M 104 496 L 496 104"/>
+            <path d="M 104 540 L 488 540 Q 540 540 540 488 L 540 104"/>
+          </g>
+
+          <!-- bases -->
+          <g>
+            <circle cx="58" cy="542" r="36" fill="rgba(5,150,170,.22)" stroke="#0596aa" stroke-width="2.5" filter="url(#brilho)"/>
+            <text x="58" y="546" text-anchor="middle" font-size="10" font-weight="700" fill="#7fd6e6" font-family="Inter,sans-serif">AZUL</text>
+            <circle cx="542" cy="58" r="36" fill="rgba(232,64,87,.20)" stroke="#e84057" stroke-width="2.5" filter="url(#brilho)"/>
+            <text x="542" y="62" text-anchor="middle" font-size="10" font-weight="700" fill="#f08e9b" font-family="Inter,sans-serif">VERM.</text>
+          </g>
+
+          <!-- rotulos de lane -->
+          <g font-family="Inter,sans-serif" font-size="11" font-weight="800" fill="rgba(200,170,110,.5)" letter-spacing="2">
+            <text x="88" y="196" transform="rotate(-90 88 196)">ROTA SUPERIOR</text>
+            <text x="300" y="296" text-anchor="middle" transform="rotate(-45 300 296)">ROTA DO MEIO</text>
+            <text x="360" y="566">ROTA INFERIOR</text>
+          </g>
+
+          <!-- camps injetados pelo JS -->
+          <g id="camadaCamps"></g>
+        </svg>
+
+        <div class="mapa-legenda">
+          <span><i style="background:#0596aa"></i> Sentinela Azul</span>
+          <span><i style="background:#e84057"></i> Sentinela Vermelha</span>
+          <span><i style="background:#3ddc84"></i> Gromp</span>
+          <span><i style="background:#9d7cff"></i> Lobos / Covil épico</span>
+          <span><i style="background:#ff9d3c"></i> Aves / Dragão</span>
+          <span><i style="background:#c8aa6e"></i> Krugs</span>
+          <span><i style="background:#0ac8b9"></i> Caranguejo</span>
+        </div>
+      </div>
+
+      <aside class="mapa-info reveal" id="mapaInfo">
+        <p class="placeholder">👆 Selecione um ponto no mapa para ver os detalhes do camp — tempo de
+        renascimento, experiência, ouro e a leitura tática de como usá-lo.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= OBJETIVOS ======================= -->
+<section id="objetivos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">04 — Linha do tempo</span>
+      <h2>A partida em janelas de decisão</h2>
+      <p>Uma partida de jungle não é contínua: é uma sequência de janelas. Clique em cada marco para ver o
+      que precisa estar feito naquele momento — e, principalmente, o que precisa começar antes dele.</p>
+    </div>
+
+    <div class="tl reveal">
+      <div class="tl-trilho"></div>
+      <div class="tl-itens" id="tlItens"></div>
+      <div class="tl-detalhe" id="tlDetalhe"></div>
+    </div>
+
+    <h3 class="reveal" style="margin-top:56px">Calculadora de renascimento</h3>
+    <p class="reveal">Digite o minuto em que o objetivo morreu e descubra quando ele volta e quando você
+    precisa iniciar o setup. Trabalhar com a janela de setup — e não com o horário do renascimento — é o que
+    diferencia jungler reativo de jungler proativo.</p>
+
+    <div class="calc reveal">
+      <div class="calc-row">
+        <div class="campo">
+          <label for="calcTipo">Objetivo</label>
+          <select id="calcTipo">
+            <option value="135" data-setup="45">Camp pequeno — 2:15</option>
+            <option value="300" data-setup="60" selected>Buff / Dragão — 5:00</option>
+            <option value="150" data-setup="40">Caranguejo — 2:30</option>
+            <option value="360" data-setup="90">Barão / Ancião — 6:00</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="calcMin">Minuto da morte</label>
+          <input type="number" id="calcMin" min="0" max="90" value="8" inputmode="numeric">
+        </div>
+        <div class="campo">
+          <label for="calcSeg">Segundo</label>
+          <input type="number" id="calcSeg" min="0" max="59" value="30" inputmode="numeric">
+        </div>
+        <button class="btn btn-primary btn-sm" id="calcBtn" style="margin-bottom:1px">Calcular</button>
+      </div>
+      <div class="calc-saida">
+        <div class="bloco"><div class="v" id="saidaRenasce">13:30</div><div class="k">Renasce em</div></div>
+        <div class="bloco"><div class="v" id="saidaSetup">12:30</div><div class="k">Iniciar setup</div></div>
+        <div class="bloco"><div class="v" id="saidaVisao">12:00</div><div class="k">Colocar visão</div></div>
+        <div class="bloco"><div class="v" id="saidaAviso">12:45</div><div class="k">Avisar o time</div></div>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <span class="ci">🧠</span>
+      <p><strong>A regra dos 90 segundos.</strong> Para objetivos épicos, tudo começa um minuto e meio antes:
+      limpar os camps próximos ao covil, empurrar as ondas das lanes vizinhas, montar visão nas duas entradas
+      e avisar o time. Quem chama Barão no segundo em que ele nasce já perdeu o Barão.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PATHING ======================= -->
+<section id="pathing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">05 — Pathing</span>
+      <h2>Rotas: escolher antes, adaptar durante</h2>
+      <p>Não existe rota certa universal. Existe a rota certa para <em>este</em> campeão, contra <em>esta</em>
+      composição, com <em>este</em> objetivo nascendo em seguida. Abaixo, os três padrões que cobrem a maior
+      parte das partidas.</p>
+    </div>
+
+    <div class="abas reveal" role="tablist">
+      <button class="aba on" data-painel="p-full" role="tab">Full clear</button>
+      <button class="aba" data-painel="p-curta" role="tab">Rota curta (3 camps)</button>
+      <button class="aba" data-painel="p-invade" role="tab">Invade nível 1</button>
+      <button class="aba" data-painel="p-adapta" role="tab">Adaptação no meio do clear</button>
+    </div>
+
+    <div class="painel on" id="p-full">
+      <div class="grid g2">
+        <article class="card">
+          <h3>Quando usar</h3>
+          <ul>
+            <li>Campeões que escalam: <strong>Karthus, Kindred, Lillia, Bel'Veth, Shyvana</strong>.</li>
+            <li>Composição inimiga com pico inicial forte — negar o duelo é melhor que disputá-lo.</li>
+            <li>Suas lanes estão em matchups difíceis e não há gank bom disponível.</li>
+          </ul>
+          <p style="margin-top:14px">O objetivo é chegar ao nível 4 ou 5 com a maior quantidade de ouro e
+          terminar o clear <strong>exatamente em cima do próximo objetivo</strong>.</p>
+        </article>
+        <article class="card">
+          <h3>Rota padrão — lado azul, começando pelo topo</h3>
+          <div class="rota">
+            <span class="passo"><i style="background:#3ddc84"></i>Gromp</span><span class="seta">→</span>
+            <span class="passo"><i style="background:#0596aa"></i>Azul</span><span class="seta">→</span>
+            <span class="passo"><i style="background:#9d7cff"></i>Lobos</span><span class="seta">→</span>
+            <span class="passo"><i style="background:#ff9d3c"></i>Aves</span><span class="seta">→</span>
+            <span class="passo"><i style="background:#e84057"></i>Vermelho</span><span class="seta">→</span>
+            <span class="passo"><i style="background:#c8aa6e"></i>Krugs</span><span class="seta">→</span>
+            <span class="passo"><i style="background:#0ac8b9"></i>Caranguejo inferior</span>
+          </div>
+          <p style="margin-top:16px"><strong>Tempo alvo:</strong> seis camps concluídos entre 3:15 e 3:30,
+          chegando ao rio com nível 3 e vida para disputar.</p>
+          <p><strong>Variação:</strong> pular Krugs economiza cerca de 25 segundos e é decisão legítima quando
+          a janela do caranguejo ou do dragão está apertada.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="painel" id="p-curta">
+      <div class="grid g2">
+        <article class="card">
+          <h3>Quando usar</h3>
+          <ul>
+            <li>Campeões de pico inicial: <strong>Lee Sin, Elise, Xin Zhao, Rek'Sai, Jarvan IV</strong>.</li>
+            <li>Uma lane sua tem controle de onda favorável e o inimigo está sobre-estendido.</li>
+            <li>A lane inimiga gastou Flash ou está com pouca vida.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Rota e execução</h3>
+          <div class="rota">
+            <span class="passo"><i style="background:#e84057"></i>Vermelho</span><span class="seta">→</span>
+            <span class="passo"><i style="background:#ff9d3c"></i>Aves</span><span class="seta">→</span>
+            <span class="passo"><i style="background:#9d7cff"></i>Lobos</span><span class="seta">→</span>
+            <span class="passo" style="border-color:var(--gold)">Gank nível 3</span>
+          </div>
+          <p style="margin-top:16px">Três camps entregam o nível 3 por volta de 2:35. O gank precisa acontecer
+          <strong>antes de 3:15</strong>, porque depois disso o valor cai e você fica atrasado para o caranguejo.</p>
+          <p><strong>Regra de ouro:</strong> se o gank falhar, o plano B já tem que existir — normalmente
+          contra-jungle imediato ou o caranguejo do lado oposto.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="painel" id="p-invade">
+      <div class="grid g2">
+        <article class="card">
+          <h3>Condições mínimas</h3>
+          <ul>
+            <li>Sua composição vence a luta de nível 1 (mais CC ou mais dano imediato).</li>
+            <li>Pelo menos três aliados dispostos a ir junto e cientes do plano.</li>
+            <li>Você sabe de que lado o jungler inimigo vai começar.</li>
+            <li>Existe rota de fuga clara se eles estiverem esperando.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>O que buscar</h3>
+          <p>Invade de nível 1 raramente termina em abate. O ganho real é <strong>informação</strong> e
+          <strong>tempo</strong>: atrasar o começo do clear inimigo em 15 segundos já quebra o pathing dele.</p>
+          <div class="callout warn" style="margin:14px 0 0">
+            <span class="ci">⛔</span>
+            <p>Invade que dá errado não custa só o abate: custa o buff, o clear inteiro e normalmente o primeiro
+            objetivo. Se qualquer uma das quatro condições falhar, não vá.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="painel" id="p-adapta">
+      <div class="grid g3">
+        <article class="card">
+          <h3>Gatilho 1 — Vi o jungler inimigo</h3>
+          <p>Se ele apareceu no seu lado bot, o lado top dele está sem dono pelos próximos 40 a 60 segundos.
+          Essa é a janela para contra-jungle ou para um gank sem risco de contra-gank.</p>
+        </article>
+        <article class="card">
+          <h3>Gatilho 2 — Uma lane empurrou de vez</h3>
+          <p>Onda parada perto da torre inimiga é um convite. Interrompa a rota e vá, mesmo que isso custe um
+          camp — a conversão vale mais que o camp perdido.</p>
+        </article>
+        <article class="card">
+          <h3>Gatilho 3 — Uma lane sua morreu</h3>
+          <p>Não vá "vingar". Vá para o lado oposto do mapa aproveitar que o jungler inimigo está comprometido.
+          Reagir à morte é como junglers perdem a própria partida.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= GANKS E CONTRA-JUNGLE ======================= -->
+<section id="ganks">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">06 — Ganks e contra-jungle</span>
+      <h2>Leitura de onda, ângulo e conversão</h2>
+      <p>A maior parte dos ganks ruins não falha por execução: falha porque nunca deveria ter acontecido.
+      Antes de andar para a lane, quatro variáveis precisam estar resolvidas.</p>
+    </div>
+
+    <div class="grid g4">
+      <article class="card reveal">
+        <div class="ico">🌊</div>
+        <h3>Estado da onda</h3>
+        <p><strong>Onda empurrando para você:</strong> gank ruim, o inimigo tem espaço para recuar.</p>
+        <p><strong>Onda no meio ou empurrada para o inimigo:</strong> gank bom, há caminho a cortar.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico">🔒</div>
+        <h3>Controle de grupo</h3>
+        <p>Sem CC seu ou da lane, o gank precisa de vantagem de vida ou de Flash já gasto pelo inimigo. Dois
+        campeões sem CC raramente matam alguém com Flash disponível.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico">✨</div>
+        <h3>Feitiços do inimigo</h3>
+        <p>Rastreie Flash. Um Flash gasto vale cerca de cinco minutos de vulnerabilidade daquela lane —
+        anote mentalmente o minuto em que ele foi usado.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico">📐</div>
+        <h3>Ângulo de entrada</h3>
+        <p>Sempre que possível, entre <strong>por trás da onda</strong>, cortando a rota de fuga. Gank pela
+        frente só funciona com CC de longo alcance ou vantagem enorme de vida.</p>
+      </article>
+    </div>
+
+    <div class="grid g2" style="margin-top:20px">
+      <article class="card reveal">
+        <h3>Os três tipos de gank</h3>
+        <ul>
+          <li><strong>Gank de abate</strong> — o óbvio. Exige que as quatro variáveis acima estejam a favor.</li>
+          <li><strong>Gank de pressão</strong> — não mata, mas força Flash ou recuo. Libera a lane e vale quase
+          tanto quanto um abate.</li>
+          <li><strong>Gank de tempo</strong> — você aparece só para segurar o inimigo na lane enquanto seu
+          aliado empurra e rotaciona. É o mais subestimado dos três.</li>
+        </ul>
+      </article>
+      <article class="card reveal">
+        <h3>Checklist de contra-jungle</h3>
+        <p>Você precisa de pelo menos <strong>três das quatro</strong> condições:</p>
+        <ul>
+          <li>Jungler inimigo visto do outro lado do mapa</li>
+          <li>Prioridade na lane mais próxima da entrada</li>
+          <li>Visão da entrada <em>e</em> da saída</li>
+          <li>Você vence o duelo caso ele apareça</li>
+        </ul>
+        <p style="margin-top:12px">O que roubar, em ordem: camps de experiência (Aves e Krugs) &gt; buffs &gt;
+        camps pequenos restantes. Antes dos 10 minutos, <strong>nível vale mais que ouro</strong>.</p>
+      </article>
+    </div>
+
+    <div class="callout reveal">
+      <span class="ci">🔄</span>
+      <p><strong>Conversão pós-gank — os 40 segundos que decidem.</strong> Matou na rota inferior?
+      As opções, em ordem: empurrar a onda e pegar placa &gt; descer para o dragão &gt; roubar os camps
+      inferiores do jungler inimigo &gt; colocar visão profunda. Voltar para o próprio jungle é a
+      <em>última</em> opção, não a primeira.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CAMPEOES ======================= -->
+<section id="campeoes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">07 — Pool de campeões</span>
+      <h2>Escolha três. Domine três.</h2>
+      <p>Um pool saudável cobre três funções: um <strong>tanque de engage</strong> para composições que
+      precisam iniciar, um <strong>duelista</strong> para punir o jungle inimigo e um <strong>escalonador</strong>
+      para partidas longas. Clique em qualquer campeão para ver runas, ordem de itens e as notas de jogo —
+      com link direto para os dados atualizados no OP.GG.</p>
+    </div>
+
+    <div class="filtros reveal" id="filtros">
+      <button class="filtro on" data-cat="todos">Todos</button>
+      <button class="filtro" data-cat="iniciante">Para iniciar na rota</button>
+      <button class="filtro" data-cat="tanque">Tanque</button>
+      <button class="filtro" data-cat="engage">Engage</button>
+      <button class="filtro" data-cat="skirmisher">Duelista</button>
+      <button class="filtro" data-cat="assassino">Assassino</button>
+      <button class="filtro" data-cat="carry">Carregador</button>
+      <button class="filtro" data-cat="ap">Dano mágico</button>
+    </div>
+
+    <div class="champ-grid reveal" id="champGrid"></div>
+
+    <div class="callout gold reveal" style="margin-top:30px">
+      <span class="ci">📊</span>
+      <p><strong>Sobre as builds:</strong> a ordem de itens abaixo é um ponto de partida sólido, não uma
+      receita fixa. Itens mudam a cada patch e a construção correta sempre depende da composição inimiga.
+      Use o botão do OP.GG dentro de cada campeão para conferir a build com maior taxa de vitória no patch
+      atual, nos elos mais altos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= METRICAS E ROTINA ======================= -->
+<section id="metricas">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">08 — Medição</span>
+      <h2>O que medir depois de cada partida</h2>
+      <p>Treinar sem medir é só jogar. Estes oito indicadores cobrem todo o desempenho de um jungler —
+      e cada um aponta para um erro específico e corrigível.</p>
+    </div>
+
+    <div class="grid g4 reveal" id="gridKpi"></div>
+
+    <h3 class="reveal" style="margin-top:56px">Rotina de treino — sessão de 2 a 3 horas</h3>
+    <div class="grid g3">
+      <article class="card reveal">
+        <span class="tag t-teal">15 minutos</span>
+        <h3>Aquecimento mecânico</h3>
+        <p>Partida personalizada. Dois clears completos cronometrados com o campeão do dia. Meta: bater o
+        tempo da sessão anterior ou repetir com menos tempo morto.</p>
+        <p>Um dos dois clears é feito <strong>sem leash</strong> — é a situação real da maioria das partidas.</p>
+      </article>
+      <article class="card reveal">
+        <span class="tag t-gold">10 minutos</span>
+        <h3>Revisão de gravação</h3>
+        <p>Assista apenas os <strong>10 primeiros minutos</strong> da sua última partida. Pause a cada morte
+        e a cada objetivo e responda: eu sabia onde o jungler inimigo estava?</p>
+        <p>Dez minutos bem revisados ensinam mais que uma partida inteira assistida no automático.</p>
+      </article>
+      <article class="card reveal">
+        <span class="tag t-violet">3 a 4 partidas</span>
+        <h3>Ranqueada com foco único</h3>
+        <p>Escolha <strong>um</strong> objetivo para a sessão: "vou colocar visão nas Aves inimigas antes de
+        2:30 em todas as partidas". Um só. Todo o resto joga no automático.</p>
+        <p>Foco disperso é o motivo mais comum de treinar muito e evoluir pouco.</p>
+      </article>
+      <article class="card reveal">
+        <span class="tag t-orange">15 minutos</span>
+        <h3>Diário de partidas</h3>
+        <p>Ao fim da sessão, escreva <strong>três erros e um acerto</strong>. Os erros precisam ser
+        específicos: "cheguei atrasado no dragão das 15:00" vale; "joguei mal" não vale.</p>
+      </article>
+      <article class="card reveal">
+        <span class="tag t-red">Regra de parada</span>
+        <h3>Duas derrotas seguidas: pare</h3>
+        <p>Frustração degrada exatamente a habilidade que você está treinando: a leitura calma do mapa.
+        Duas derrotas seguidas encerram a sessão — sem exceção.</p>
+      </article>
+      <article class="card reveal">
+        <span class="tag t-green">Semanal</span>
+        <h3>Revisão de rumo</h3>
+        <p>Uma vez por semana, olhe o diário inteiro. Erros repetidos viram o foco único da semana seguinte.
+        Esse ciclo é o mecanismo real de evolução deste roadmap.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ROADMAP ======================= -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">09 — Programa</span>
+      <h2>Roadmap de 12 semanas</h2>
+      <p>Quatro fases, três semanas cada. Marque as tarefas conforme avança — o progresso fica salvo neste
+      navegador, então você pode fechar a página e voltar depois.</p>
+    </div>
+
+    <div class="progresso-geral reveal">
+      <span class="rotulo">Progresso total</span>
+      <div class="barra"><i id="barraProgresso"></i></div>
+      <span class="pct" id="pctProgresso">0%</span>
+      <button class="btn btn-ghost btn-sm" id="limparProgresso">Zerar</button>
+    </div>
+
+    <div id="listaFases"></div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">10 — Dúvidas frequentes</span>
+      <h2>As perguntas que todo jungler faz</h2>
+    </div>
+    <div id="listaFaq" class="reveal"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= RODAPE ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px"><span class="mark">◆</span><span>JUNGLE CHALLENGER</span></div>
+        <p style="font-size:.88rem;max-width:380px">Material de estudo independente para jogadores de
+        League of Legends que querem estruturar o próprio treino na rota da selva. Conteúdo educacional,
+        sem vínculo com a Riot Games.</p>
+      </div>
+      <div>
+        <h4>Seções</h4>
+        <ul>
+          <li><a href="#fundamentos">Fundamentos</a></li>
+          <li><a href="#mapa">Mapa interativo</a></li>
+          <li><a href="#objetivos">Linha do tempo</a></li>
+          <li><a href="#campeoes">Pool de campeões</a></li>
+          <li><a href="#roadmap">Roadmap 12 semanas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Referências externas</h4>
+        <ul>
+          <li><a href="https://op.gg/lol/champions" target="_blank" rel="noopener" data-ext="opgg-footer">OP.GG — estatísticas</a></li>
+          <li><a href="https://www.leagueoflegends.com/pt-br/news/tags/patch-notes/" target="_blank" rel="noopener" data-ext="patchnotes">Notas de atualização</a></li>
+          <li><a href="https://developer.riotgames.com/docs/lol#data-dragon" target="_blank" rel="noopener" data-ext="ddragon">Data Dragon (Riot)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>Jungle Challenger · material de estudo. Ícones de campeões, itens e runas via Data Dragon (Riot Games).</span>
+      <span>League of Legends © Riot Games, Inc. Esta página não é endossada pela Riot Games.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================= MODAL DE CAMPEAO ======================= -->
+<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" id="modal"></div>
+</div>
+
+<button id="voltarTopo" aria-label="Voltar ao topo">↑</button>
+
+<script src="assets/js/dados.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
