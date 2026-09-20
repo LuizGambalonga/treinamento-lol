@@ -9,3 +9,6 @@ Thumbs.db
 # temporarios
 *.log
 *.tmp
+
+# documentacao operacional (nao versionada)
+docs-internas.md

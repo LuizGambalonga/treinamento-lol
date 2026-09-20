@@ -1,15 +1,5 @@
 name: Publicar no GitHub Pages
 
-# Injeta o ID do Google Analytics no momento do deploy e publica a pagina.
-# O repositorio continua com o placeholder G-XXXXXXXXXX, entao o valor real
-# nunca precisa ser commitado.
-#
-# Configurar em:  Settings > Secrets and variables > Actions > Variables > New
-#   Nome:  GA_MEASUREMENT_ID
-#   Valor: G-XXXXXXXXXX  (o seu ID real)
-#
-# E em: Settings > Pages > Source = "GitHub Actions"
-
 on:
   push:
     branches: [main]
@@ -20,7 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# Evita dois deploys simultaneos disputando o Pages
 concurrency:
   group: pages
   cancel-in-progress: true
